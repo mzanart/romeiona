@@ -687,7 +687,7 @@ function money(n){ return "$" + n.toFixed(2).replace(/\.00$/,""); }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function badgesHTML(p){
   var h = p.badges.map(function(b){ return '<span class="badge'+(p.gold && b!=="Handmade" ? " gold":"")+'">'+esc(b)+"</span>"; }).join("");
-  if(!p.available) h += '<span class="badge off">Not currently available</span>';
+  if(!p.available) h += '<span class="badge off">Sold out</span>';
   return h ? '<div class="badges">'+h+"</div>" : "";
 }
 function priceHTML(p){
@@ -723,7 +723,7 @@ function cardHTML(p){
     : '<button class="im" data-open="'+p.id+'" aria-label="View '+esc(p.name)+'">'+tileHTML(p)+"</button>";
   var action = p.available
     ? '<button class="addbtn" data-add="'+p.id+'">Add to Cart</button>'
-    : '<span class="unavail">Not currently available</span>';
+    : '<span class="unavail">Sold out</span>';
   return '<article class="card">'+media+'<div class="bd">'+badgesHTML(p)
     + '<h3><button data-open="'+p.id+'">'+esc(p.name)+"</button></h3>"
     + '<p class="meta">'+esc(p.meta)+'</p><div class="row">'+priceHTML(p)+action+"</div></div></article>";
@@ -881,7 +881,7 @@ function openProduct(id){
           + '<div class="qtyrow"><span class="qty"><button id="qDec" aria-label="Decrease quantity">−</button><output id="qOut">1</output><button id="qInc" aria-label="Increase quantity">+</button></span>'
           + '<button class="madd" id="mAdd">Add to Cart — '+money(p.price)+"</button></div>"
           + (p.cat==="crochet" ? '<p class="mnote">Made to order — delivered no later than 2–3 weeks after ordering, possibly sooner. Tracking is emailed when your piece ships.</p>' : "")
-        : '<p class="mnote">This piece is not currently available. Want to ask about it? Email <a href="mailto:romeiona3@gmail.com" style="font-weight:600">romeiona3@gmail.com</a> or DM <a href="https://www.instagram.com/rome.iona/" target="_blank" rel="noopener" style="font-weight:600">@rome.iona</a>.</p>')
+        : '<p class="mnote">This piece is sold out. Want to ask about it? Email <a href="mailto:romeiona3@gmail.com" style="font-weight:600">romeiona3@gmail.com</a> or DM <a href="https://www.instagram.com/rome.iona/" target="_blank" rel="noopener" style="font-weight:600">@rome.iona</a>.</p>')
     + "</div></div>";
   scrim.classList.add("open");
   document.body.style.overflow = "hidden";
